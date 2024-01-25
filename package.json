@@ -7,6 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "typecheck": "tsc",
     "format:check": "npx prettier . --check \"**/*.{js,jsx,json,ts,tsx}\"",
     "format:write": "npx prettier . --write \"**/*.{js,jsx,json,ts,tsx}\"",
     "lint": "eslint \"**/*.{js,jsx,json,ts,tsx}\""
@@ -17,6 +18,15 @@
     "react": "18.2.0",
     "react-native": "0.73.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run typecheck && npm run lint-staged"
+    }
+  },
+  "lint-staged":{
+    "src/**/*.{js,jsx,ts,tsx}": "eslint",
+    "**/*.{js,jsx,json,ts,tsx}": "prettier --write"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
@@ -25,6 +35,8 @@
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "3.2.4",
     "typescript": "^5.1.3"
   },
